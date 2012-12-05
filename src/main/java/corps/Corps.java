@@ -15,8 +15,8 @@ public class Corps {
 	public Corps suivant() {
 		Corps suivant = new Corps();
 		for (Point position : cellules.positions()) {
-			Cellule evolution = celluleEvoluee(position.x, position.y);
-			suivant.ajouteCellule(position.x, position.y, evolution.estVivante());
+			Cellule evolution = celluleEvoluee(position.x(), position.y());
+			suivant.ajouteCellule(position.x(), position.y(), evolution.estVivante());
 		}
 		return suivant;
 	}

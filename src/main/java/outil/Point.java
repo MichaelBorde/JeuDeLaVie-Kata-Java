@@ -11,13 +11,8 @@ public class Point {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-
 		Point point = (Point) o;
-
-		if (x != point.x) return false;
-		if (y != point.y) return false;
-
-		return true;
+		return x == point.x && y == point.y;
 	}
 
 	@Override
@@ -35,6 +30,6 @@ public class Point {
 		return y;
 	}
 
-	public final int x;
-	public final int y;
+	private final int x;
+	private final int y;
 }
