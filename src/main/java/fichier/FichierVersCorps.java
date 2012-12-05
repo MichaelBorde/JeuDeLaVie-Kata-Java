@@ -9,6 +9,7 @@ import com.google.common.io.Files;
 import corps.Corps;
 
 public class FichierVersCorps {
+
 	public FichierVersCorps(String chemin) {
 		this.chemin = chemin;
 	}

@@ -1,6 +1,6 @@
 package console;
 
-public class Console {
-	public void ecris(String ligne) {
-	}
+public interface Console {
+
+	void ecris(String ligne);
 }

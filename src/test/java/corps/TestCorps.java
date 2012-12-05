@@ -5,8 +5,6 @@ import static org.fest.assertions.Assertions.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import outil.Rectangle;
-
 public class TestCorps {
 
 	@Before
@@ -41,44 +39,6 @@ public class TestCorps {
 		assertThat(suivant.cellule(10, 10).estVivante()).isFalse();
 		assertThat(suivant.cellule(10, 11).estVivante()).isFalse();
 		assertThat(suivant.cellule(10, 12).estVivante()).isFalse();
-	}
-
-	@Test
-	public void peutFournirLaBoiteEnglobanteDUnPetitCorps() {
-		corps.ajouteCellule(0, 0, true);
-
-		Rectangle boite = corps.boite();
-
-		assertThat(boite).isNotNull();
-		assertThat(boite).isEqualTo(new Rectangle(0, 0, 1, 1));
-	}
-
-	@Test
-	public void peutFournirLaBoiteEnglobanteDUnAvecPlusieursCellules() {
-		corps.ajouteCellule(-1, -2, true);
-		corps.ajouteCellule(3, 5, true);
-
-		Rectangle boite = corps.boite();
-
-		assertThat(boite).isEqualTo(new Rectangle(-1, -2, 5, 8));
-	}
-
-	@Test
-	public void laBoiteEnglobanteEstValidePourDesPositionsNegatives() {
-		corps.ajouteCellule(-1, -1, true);
-
-		Rectangle boite = corps.boite();
-
-		assertThat(boite).isNotNull();
-		assertThat(boite).isEqualTo(new Rectangle(-1, -1, 1, 1));
-	}
-
-	@Test
-	public void laBoiteEnglobanteDUnCorpsVideEstVide() {
-		Rectangle boite = corps.boite();
-
-		assertThat(boite).isNotNull();
-		assertThat(boite).isEqualTo(new Rectangle(0, 0, 0, 0));
 	}
 
 	private Corps corps;

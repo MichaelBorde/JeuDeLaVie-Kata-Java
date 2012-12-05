@@ -13,8 +13,7 @@ public class CorpsVersConsoleTest {
 	public void avant() {
 		corps = new Corps();
 		console = mock(Console.class);
-		corpsVersConsole = new CorpsVersConsole();
-		corpsVersConsole.console = console;
+		corpsVersConsole = new CorpsVersConsole(console);
 	}
 
 	@Test
@@ -23,7 +22,7 @@ public class CorpsVersConsoleTest {
 
 		corpsVersConsole.ecris(corps);
 
-		verify(console).ecris("x");
+		verify(console).ecris("x.........");
 	}
 
 	@Test
@@ -33,7 +32,7 @@ public class CorpsVersConsoleTest {
 
 		corpsVersConsole.ecris(corps);
 
-//		verify(console).ecris("xx");
+		verify(console).ecris("xx........");
 	}
 
 	private Corps corps;
