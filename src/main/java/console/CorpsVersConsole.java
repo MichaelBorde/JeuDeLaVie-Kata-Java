@@ -11,10 +11,10 @@ public class CorpsVersConsole {
 		this.console = console;
 	}
 
-	public void ecris(Corps corps) {
-		for (int j = 0; j < 10; j++) {
+	public void ecris(Corps corps, int taille) {
+		for (int j = 0; j < taille; j++) {
 			StringBuilder builder = new StringBuilder();
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < taille; i++) {
 				builder.append(corps.cellule(i, j).estVivante() ? "x" : ".");
 			}
 			console.ecris(builder.toString());

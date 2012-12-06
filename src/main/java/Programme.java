@@ -12,7 +12,7 @@ public class Programme {
 	public static void main(String[] args) throws IOException {
 		Corps corps = corpsInitial();
 		CorpsVersConsole corpsVersConsole = corpsVersConsole();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 30; i++) {
 			afficheGeneration(corps, corpsVersConsole, i);
 			demandeInterractionUtilisateur();
 			corps = corps.suivant();
@@ -21,7 +21,7 @@ public class Programme {
 
 	private static void afficheGeneration(Corps corps, CorpsVersConsole corpsVersConsole, int i) {
 		System.out.println("Génération : " + i);
-		corpsVersConsole.ecris(corps);
+		corpsVersConsole.ecris(corps, 20);
 		System.out.println("Appuyer sur entrée");
 	}
 
@@ -35,7 +35,7 @@ public class Programme {
 	}
 
 	private static Corps corpsInitial() {
-		FichierVersCorps fichierVersCorps = new FichierVersCorps("src/main/resources/feu.txt");
+		FichierVersCorps fichierVersCorps = new FichierVersCorps("src/main/resources/planeur.txt");
 		return fichierVersCorps.lisCorps();
 	}
 
