@@ -36,5 +36,5 @@ public class FichierVersCorps {
 		}
 	}
 
-	private String chemin;
+	private final String chemin;
 }

@@ -1,10 +1,11 @@
 package corps;
 
-import java.util.List;
+import java.util.Set;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import outil.Point;
 
@@ -16,7 +17,7 @@ public class Corps {
 
 	public Corps suivant() {
 		Corps suivant = new Corps();
-		List<Point> celluleEtVoisines = celluleEtVoisines();
+		Set<Point> celluleEtVoisines = celluleEtVoisines();
 		for (Point position : celluleEtVoisines) {
 			Cellule evolution = celluleEvoluee(position);
 			suivant.ajouteCellule(position, evolution.estVivante());
@@ -25,10 +26,10 @@ public class Corps {
 		return suivant;
 	}
 
-	private List<Point> celluleEtVoisines() {
-		List<Point> celluleEtVoisines = Lists.newArrayList();
-		for (Point position : cellules.positions()) {
-			celluleEtVoisines.addAll(Cellules.positionsVoisines(position));
+	private Set<Point> celluleEtVoisines() {
+		Set<Point> celluleEtVoisines = Sets.newHashSet();
+		for (Point position : cellules.positionsVivantes()) {
+			celluleEtVoisines.addAll(position.pointsAutour());
 			celluleEtVoisines.add(position);
 		}
 		return celluleEtVoisines;
@@ -52,5 +53,5 @@ public class Corps {
 		return cellules.cellule(position);
 	}
 
-	private Cellules cellules = new Cellules();
+	private final Cellules cellules = new Cellules();
 }

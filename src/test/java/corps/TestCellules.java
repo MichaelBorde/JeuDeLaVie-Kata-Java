@@ -3,6 +3,7 @@ package corps;
 import static org.fest.assertions.Assertions.*;
 
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -26,18 +27,17 @@ public class TestCellules {
 	}
 
 	@Test
-	public void peutFournirLesPositionsDesVoisinesDUneCellule() {
-		List<Point> resultat = Cellules.positionsVoisines(new Point(5, 3));
+	public void peutFournirLesPositionsVivantes() {
+		Cellules cellules = new Cellules();
+		cellules.ajoute(new Point(0, 0), Cellule.vivante());
+		cellules.ajoute(new Point(0, 1), Cellule.vivante());
+		cellules.ajoute(new Point(0, 2), Cellule.morte());
 
-		assertThat(resultat.size()).isEqualTo(8);
-		assertThat(resultat).contains(new Point(4, 2));
-		assertThat(resultat).contains(new Point(5, 2));
-		assertThat(resultat).contains(new Point(6, 2));
-		assertThat(resultat).contains(new Point(4, 3));
-		assertThat(resultat).contains(new Point(6, 3));
-		assertThat(resultat).contains(new Point(4, 4));
-		assertThat(resultat).contains(new Point(5, 4));
-		assertThat(resultat).contains(new Point(6, 4));
+		Set<Point> resultat = cellules.positionsVivantes();
+
+		assertThat(resultat).hasSize(2);
+		assertThat(resultat).contains(new Point(0, 0));
+		assertThat(resultat).contains(new Point(0, 1));
 	}
 
 	private Iterable<Cellule> vivantes(List<Cellule> resultat) {

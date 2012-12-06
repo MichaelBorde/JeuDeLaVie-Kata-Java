@@ -22,5 +22,5 @@ public class CorpsVersConsole {
 		}
 	}
 
-	private Console console;
+	private final Console console;
 }

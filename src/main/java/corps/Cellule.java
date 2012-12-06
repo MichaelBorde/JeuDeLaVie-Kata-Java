@@ -33,5 +33,5 @@ public class Cellule {
 		return voisinesVivantes == 3;
 	}
 
-	private boolean vivante;
+	private final boolean vivante;
 }
