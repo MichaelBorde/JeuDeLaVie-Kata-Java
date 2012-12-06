@@ -10,16 +10,16 @@ import outil.Point;
 
 public class Corps {
 
-	public void ajouteCellule(int i, int j, boolean vivante) {
-		cellules.ajoute(i, j, new Cellule(vivante));
+	public void ajouteCellule(Point position, boolean vivante) {
+		cellules.ajoute(position, new Cellule(vivante));
 	}
 
 	public Corps suivant() {
 		Corps suivant = new Corps();
 		List<Point> celluleEtVoisines = celluleEtVoisines();
 		for (Point position : celluleEtVoisines) {
-			Cellule evolution = celluleEvoluee(position.x(), position.y());
-			suivant.ajouteCellule(position.x(), position.y(), evolution.estVivante());
+			Cellule evolution = celluleEvoluee(position);
+			suivant.ajouteCellule(position, evolution.estVivante());
 		}
 
 		return suivant;
@@ -34,13 +34,13 @@ public class Corps {
 		return celluleEtVoisines;
 	}
 
-	private Cellule celluleEvoluee(int i, int j) {
-		Cellule cellule = cellule(i, j).cloneToi();
-		return cellule.evolue(nombreVoisinesVivantes(i, j));
+	private Cellule celluleEvoluee(Point position) {
+		Cellule cellule = cellule(position).cloneToi();
+		return cellule.evolue(nombreVoisinesVivantes(position));
 	}
 
-	private int nombreVoisinesVivantes(int i, int j) {
-		return Lists.newArrayList(Iterables.filter(cellules.voisines(i, j), new Predicate<Cellule>() {
+	private int nombreVoisinesVivantes(Point position) {
+		return Lists.newArrayList(Iterables.filter(cellules.voisines(position), new Predicate<Cellule>() {
 			@Override
 			public boolean apply(Cellule cellule) {
 				return cellule.estVivante();
@@ -48,8 +48,8 @@ public class Corps {
 		})).size();
 	}
 
-	public Cellule cellule(int i, int j) {
-		return cellules.cellule(i, j);
+	public Cellule cellule(Point position) {
+		return cellules.cellule(position);
 	}
 
 	private Cellules cellules = new Cellules();

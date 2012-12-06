@@ -3,6 +3,7 @@ package console;
 import com.google.inject.Inject;
 
 import corps.Corps;
+import outil.Point;
 
 public class CorpsVersConsole {
 
@@ -15,7 +16,7 @@ public class CorpsVersConsole {
 		for (int j = 0; j < taille; j++) {
 			StringBuilder builder = new StringBuilder();
 			for (int i = 0; i < taille; i++) {
-				builder.append(corps.cellule(i, j).estVivante() ? "x" : ".");
+				builder.append(corps.cellule(new Point(i, j)).estVivante() ? "x" : ".");
 			}
 			console.ecris(builder.toString());
 		}

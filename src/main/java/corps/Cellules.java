@@ -11,25 +11,25 @@ import outil.Point;
 
 public class Cellules {
 
-	public void ajoute(int i, int j, Cellule cellule) {
+	public void ajoute(Point position, Cellule cellule) {
 		if (cellule.estVivante()) {
-			cellules.put(new Point(i, j), cellule);
+			cellules.put(position, cellule);
 		}
 	}
 
-	public Cellule cellule(int i, int j) {
-		if (!cellules.containsKey(new Point(i, j))) {
+	public Cellule cellule(Point position) {
+		if (!cellules.containsKey(position)) {
 			return Cellule.morte();
 		}
-		return cellules.get(new Point(i, j));
+		return cellules.get(position);
 	}
 
-	public List<Cellule> voisines(int i, int j) {
+	public List<Cellule> voisines(Point position) {
 		List<Cellule> resultat = Lists.newArrayList();
 		for (int iCourant = -1; iCourant < 2; iCourant++) {
 			for (int jCourant = -1; jCourant < 2; jCourant++) {
 				if (iCourant != 0 || jCourant != 0) {
-					resultat.add(cellule(i + iCourant, j + jCourant));
+					resultat.add(cellule(new Point(position.x() + iCourant, position.y() + jCourant)));
 				}
 			}
 		}

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import corps.Corps;
+import outil.Point;
 
 public class TestCorpsVersConsole {
 
@@ -18,7 +19,7 @@ public class TestCorpsVersConsole {
 
 	@Test
 	public void peutEcrireDansLaConsoleUnCorpsSimple() {
-		corps.ajouteCellule(0, 0, true);
+		corps.ajouteCellule(new Point(0, 0), true);
 
 		corpsVersConsole.ecris(corps, 10);
 
@@ -27,8 +28,8 @@ public class TestCorpsVersConsole {
 
 	@Test
 	public void peutEcrireDansLaConsoleUnCorpsAvecPlusieursCellulesSurLaMemeHauteur() {
-		corps.ajouteCellule(0, 0, true);
-		corps.ajouteCellule(1, 0, true);
+		corps.ajouteCellule(new Point(0, 0), true);
+		corps.ajouteCellule(new Point(1, 0), true);
 
 		corpsVersConsole.ecris(corps, 10);
 

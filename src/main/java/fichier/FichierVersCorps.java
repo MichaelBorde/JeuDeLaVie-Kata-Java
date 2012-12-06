@@ -7,6 +7,7 @@ import java.util.List;
 import com.google.common.io.Files;
 
 import corps.Corps;
+import outil.Point;
 
 public class FichierVersCorps {
 
@@ -20,7 +21,7 @@ public class FichierVersCorps {
 		for (int j = 0; j < lignes.size(); j++) {
 			String ligne = lignes.get(j);
 			for (int i = 0; i < ligne.length(); i++) {
-				corps.ajouteCellule(i, j, ligne.charAt(i) == 'x');
+				corps.ajouteCellule(new Point(i, j), ligne.charAt(i) == 'x');
 			}
 		}
 		return corps;
