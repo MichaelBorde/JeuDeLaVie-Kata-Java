@@ -41,5 +41,18 @@ public class TestCorps {
 		assertThat(suivant.cellule(10, 12).estVivante()).isFalse();
 	}
 
+	@Test
+	public void uneCelluleMortePeutRevenirALaVie() {
+		corps.ajouteCellule(0, 0, true);
+		corps.ajouteCellule(1, 0, true);
+		corps.ajouteCellule(2, 0, true);
+
+		Corps suivant = corps.suivant();
+
+		assertThat(suivant.cellule(1, -1).estVivante()).isTrue();
+		assertThat(suivant.cellule(1, 0).estVivante()).isTrue();
+		assertThat(suivant.cellule(1, 1).estVivante()).isTrue();
+	}
+
 	private Corps corps;
 }

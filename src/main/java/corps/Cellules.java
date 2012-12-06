@@ -40,5 +40,17 @@ public class Cellules {
 		return cellules.keySet();
 	}
 
+	public static List<Point> positionsVoisines(Point point) {
+		List<Point> resultat = Lists.newArrayList();
+		for (int iCourant = -1; iCourant < 2; iCourant++) {
+			for (int jCourant = -1; jCourant < 2; jCourant++) {
+				if (iCourant != 0 || jCourant != 0) {
+					resultat.add(new Point(point.x() + iCourant, point.y() + jCourant));
+				}
+			}
+		}
+		return resultat;
+	}
+
 	private Map<Point, Cellule> cellules = Maps.newHashMap();
 }

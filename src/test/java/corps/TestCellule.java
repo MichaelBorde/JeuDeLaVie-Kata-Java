@@ -5,6 +5,7 @@ import static org.fest.assertions.Assertions.*;
 import org.junit.Test;
 
 public class TestCellule {
+
 	@Test
 	public void uneCelluleVivanteAvecMoinsDe2VoisinesVivantesMeurt() {
 		Cellule cellule = Cellule.vivante();

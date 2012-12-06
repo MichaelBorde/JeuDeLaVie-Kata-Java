@@ -35,7 +35,7 @@ public class Programme {
 	}
 
 	private static Corps corpsInitial() {
-		FichierVersCorps fichierVersCorps = new FichierVersCorps("src/main/resources/corps.txt");
+		FichierVersCorps fichierVersCorps = new FichierVersCorps("src/main/resources/feu.txt");
 		return fichierVersCorps.lisCorps();
 	}
 
