@@ -16,7 +16,7 @@ public class GenerationVersConsole {
 		for (int j = 0; j < taille; j++) {
 			StringBuilder builder = new StringBuilder();
 			for (int i = 0; i < taille; i++) {
-				builder.append(generation.donneCellule(new Point(i, j)).estVivante() ? "x" : ".");
+				builder.append(generation.celluleA(new Point(i, j)).estVivante() ? "x" : ".");
 			}
 			console.ecris(builder.toString());
 		}

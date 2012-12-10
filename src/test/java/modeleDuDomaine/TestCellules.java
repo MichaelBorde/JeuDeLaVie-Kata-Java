@@ -17,10 +17,10 @@ public class TestCellules {
 	@Test
 	public void peutFournirLesVoisinesDUneCellule() {
 		Cellules cellules = new Cellules();
-		cellules.ajoute(new Point(10, 10), Cellule.vivante());
-		cellules.ajoute(new Point(10, 11), Cellule.vivante());
+		cellules.ajoute(new Point(10, 10), Cellule.creeVivante());
+		cellules.ajoute(new Point(10, 11), Cellule.creeVivante());
 
-		List<Cellule> resultat = cellules.voisines(new Point(10, 10));
+		List<Cellule> resultat = cellules.voisinesAutour(new Point(10, 10));
 
 		assertThat(resultat.size()).isEqualTo(8);
 		assertThat(vivantes(resultat)).hasSize(1);
@@ -29,9 +29,9 @@ public class TestCellules {
 	@Test
 	public void peutFournirLesPositionsVivantes() {
 		Cellules cellules = new Cellules();
-		cellules.ajoute(new Point(0, 0), Cellule.vivante());
-		cellules.ajoute(new Point(0, 1), Cellule.vivante());
-		cellules.ajoute(new Point(0, 2), Cellule.morte());
+		cellules.ajoute(new Point(0, 0), Cellule.creeVivante());
+		cellules.ajoute(new Point(0, 1), Cellule.creeVivante());
+		cellules.ajoute(new Point(0, 2), Cellule.creeMorte());
 
 		Set<Point> resultat = cellules.positionsVivantes();
 

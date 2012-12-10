@@ -17,17 +17,17 @@ public class Cellules {
 		}
 	}
 
-	public Cellule cellule(Point position) {
+	public Cellule celluleA(Point position) {
 		if (!cellules.containsKey(position)) {
-			return Cellule.morte();
+			return Cellule.creeMorte();
 		}
 		return cellules.get(position);
 	}
 
-	public List<Cellule> voisines(Point position) {
+	public List<Cellule> voisinesAutour(Point position) {
 		List<Cellule> resultat = Lists.newArrayList();
 		for (Point positionVoisine : position.pointsAutour()) {
-			resultat.add(cellule(positionVoisine));
+			resultat.add(celluleA(positionVoisine));
 		}
 		return resultat;
 	}
@@ -35,7 +35,6 @@ public class Cellules {
 	public Set<Point> positionsVivantes() {
 		return cellules.keySet();
 	}
-
 
 	private final Map<Point, Cellule> cellules = Maps.newHashMap();
 }

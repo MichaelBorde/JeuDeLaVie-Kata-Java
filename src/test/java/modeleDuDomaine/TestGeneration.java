@@ -12,8 +12,8 @@ public class TestGeneration {
 	public void unCorpsEstInfini() {
 		Generation generation = new Generation(new Point(-12, 20000));
 
-		assertThat(generation.donneCellule(new Point(-12, 20000)).estVivante()).isTrue();
-		assertThat(generation.donneCellule(new Point(0, 12)).estVivante()).isFalse();
+		assertThat(generation.celluleA(new Point(-12, 20000)).estVivante()).isTrue();
+		assertThat(generation.celluleA(new Point(0, 12)).estVivante()).isFalse();
 	}
 
 
@@ -23,15 +23,15 @@ public class TestGeneration {
 
 		Generation suivant = generation.creeSuivante();
 
-		assertThat(suivant.donneCellule(new Point(10, 10)).estVivante()).isFalse();
-		assertThat(suivant.donneCellule(new Point(10, 11)).estVivante()).isFalse();
-		assertThat(suivant.donneCellule(new Point(10, 12)).estVivante()).isFalse();
-		assertThat(suivant.donneCellule(new Point(11, 10)).estVivante()).isFalse();
-		assertThat(suivant.donneCellule(new Point(11, 11)).estVivante()).isTrue();
-		assertThat(suivant.donneCellule(new Point(11, 12)).estVivante()).isFalse();
-		assertThat(suivant.donneCellule(new Point(10, 10)).estVivante()).isFalse();
-		assertThat(suivant.donneCellule(new Point(10, 11)).estVivante()).isFalse();
-		assertThat(suivant.donneCellule(new Point(10, 12)).estVivante()).isFalse();
+		assertThat(suivant.celluleA(new Point(10, 10)).estVivante()).isFalse();
+		assertThat(suivant.celluleA(new Point(10, 11)).estVivante()).isFalse();
+		assertThat(suivant.celluleA(new Point(10, 12)).estVivante()).isFalse();
+		assertThat(suivant.celluleA(new Point(11, 10)).estVivante()).isFalse();
+		assertThat(suivant.celluleA(new Point(11, 11)).estVivante()).isTrue();
+		assertThat(suivant.celluleA(new Point(11, 12)).estVivante()).isFalse();
+		assertThat(suivant.celluleA(new Point(10, 10)).estVivante()).isFalse();
+		assertThat(suivant.celluleA(new Point(10, 11)).estVivante()).isFalse();
+		assertThat(suivant.celluleA(new Point(10, 12)).estVivante()).isFalse();
 	}
 
 	@Test
@@ -40,8 +40,8 @@ public class TestGeneration {
 
 		Generation suivant = generation.creeSuivante();
 
-		assertThat(suivant.donneCellule(new Point(1, -1)).estVivante()).isTrue();
-		assertThat(suivant.donneCellule(new Point(1, 0)).estVivante()).isTrue();
-		assertThat(suivant.donneCellule(new Point(1, 1)).estVivante()).isTrue();
+		assertThat(suivant.celluleA(new Point(1, -1)).estVivante()).isTrue();
+		assertThat(suivant.celluleA(new Point(1, 0)).estVivante()).isTrue();
+		assertThat(suivant.celluleA(new Point(1, 1)).estVivante()).isTrue();
 	}
 }

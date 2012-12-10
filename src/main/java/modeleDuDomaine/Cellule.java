@@ -2,11 +2,11 @@ package modeleDuDomaine;
 
 public class Cellule {
 
-	public static Cellule vivante() {
+	public static Cellule creeVivante() {
 		return new Cellule(true);
 	}
 
-	public static Cellule morte() {
+	public static Cellule creeMorte() {
 		return new Cellule(false);
 	}
 

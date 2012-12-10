@@ -18,7 +18,7 @@ public class FichierVersGeneration {
 
 	public Generation lisGeneration() {
 		List<Point> points = new ArrayList<Point>();
-		List<String> lignes = lignes();
+		List<String> lignes = lisLignes();
 		for (int j = 0; j < lignes.size(); j++) {
 			String ligne = lignes.get(j);
 			for (int i = 0; i < ligne.length(); i++) {
@@ -34,10 +34,9 @@ public class FichierVersGeneration {
 		return ligne.charAt(i) == 'x';
 	}
 
-	private List<String> lignes() {
+	private List<String> lisLignes() {
 		try {
 			return Files.readLines(new File(chemin), Charset.defaultCharset());
-
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Chemin invalide : " + chemin, e);
 		}

@@ -8,7 +8,7 @@ public class TestCellule {
 
 	@Test
 	public void uneCelluleVivanteAvecMoinsDe2VoisinesVivantesMeurt() {
-		Cellule cellule = Cellule.vivante();
+		Cellule cellule = Cellule.creeVivante();
 
 		Cellule suivante = cellule.evolue(1);
 
@@ -17,7 +17,7 @@ public class TestCellule {
 
 	@Test
 	public void uneCelluleVivanteAvec2VoisinesVivantesResteVivante() {
-		Cellule cellule = Cellule.vivante();
+		Cellule cellule = Cellule.creeVivante();
 
 		Cellule suivante = cellule.evolue(2);
 
@@ -26,7 +26,7 @@ public class TestCellule {
 
 	@Test
 	public void uneCelluleVivanteAvecPlusDe3VoisinesVivantesMeurt() {
-		Cellule cellule = Cellule.vivante();
+		Cellule cellule = Cellule.creeVivante();
 
 		Cellule suivante = cellule.evolue(4);
 
@@ -35,7 +35,7 @@ public class TestCellule {
 
 	@Test
 	public void uneCelluleMorteAvec2VoisinesVivanteResteMorte() {
-		Cellule cellule = Cellule.morte();
+		Cellule cellule = Cellule.creeMorte();
 
 		Cellule suivante = cellule.evolue(2);
 
@@ -44,7 +44,7 @@ public class TestCellule {
 
 	@Test
 	public void uneCelluleMorteAvec3VoisinesVivantesRevit() {
-		Cellule cellule = Cellule.morte();
+		Cellule cellule = Cellule.creeMorte();
 
 		Cellule suivante = cellule.evolue(3);
 

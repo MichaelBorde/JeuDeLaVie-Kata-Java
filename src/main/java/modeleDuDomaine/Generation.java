@@ -25,7 +25,7 @@ public class Generation {
 
 	public Generation creeSuivante() {
 		List<Point> cellulesSuivantes = Lists.newArrayList();
-		Set<Point> celluleEtVoisines = donneCelluleEtVoisines();
+		Set<Point> celluleEtVoisines = celluleEtVoisines();
 		for (Point position : celluleEtVoisines) {
 			Cellule evolution = creeCelluleEvoluee(position);
 			if (evolution.estVivante()) {
@@ -35,7 +35,7 @@ public class Generation {
 		return new Generation(cellulesSuivantes);
 	}
 
-	private Set<Point> donneCelluleEtVoisines() {
+	private Set<Point> celluleEtVoisines() {
 		Set<Point> celluleEtVoisines = Sets.newHashSet();
 		for (Point position : cellules.positionsVivantes()) {
 			celluleEtVoisines.addAll(position.pointsAutour());
@@ -45,12 +45,12 @@ public class Generation {
 	}
 
 	private Cellule creeCelluleEvoluee(Point position) {
-		Cellule cellule = donneCellule(position).cloneToi();
-		return cellule.evolue(calculeNombreVoisinesVivantes(position));
+		Cellule cellule = celluleA(position).cloneToi();
+		return cellule.evolue(nombreVoisinesVivantes(position));
 	}
 
-	private int calculeNombreVoisinesVivantes(Point position) {
-		return Lists.newArrayList(Iterables.filter(cellules.voisines(position), new Predicate<Cellule>() {
+	private int nombreVoisinesVivantes(Point position) {
+		return Lists.newArrayList(Iterables.filter(cellules.voisinesAutour(position), new Predicate<Cellule>() {
 			@Override
 			public boolean apply(Cellule cellule) {
 				return cellule.estVivante();
@@ -58,8 +58,8 @@ public class Generation {
 		})).size();
 	}
 
-	public Cellule donneCellule(Point position) {
-		return cellules.cellule(position);
+	public Cellule celluleA(Point position) {
+		return cellules.celluleA(position);
 	}
 
 	private final Cellules cellules = new Cellules();
