@@ -15,7 +15,6 @@ public class TestFichierVersGeneration {
 
 		Generation generation = fichierVersGeneration.lisGeneration();
 
-		assertThat(generation.celluleA(new Point(0, 0)).estVivante()).isFalse();
-		assertThat(generation.celluleA(new Point(1, 1)).estVivante()).isTrue();
+		assertThat(generation.positionsVivantes()).containsOnly(new Point(1, 1));
 	}
 }

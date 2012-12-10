@@ -45,7 +45,7 @@ public class Generation {
 	}
 
 	private Cellule creeCelluleEvoluee(Point position) {
-		Cellule cellule = celluleA(position).cloneToi();
+		Cellule cellule = cellules.celluleA(position);
 		return cellule.evolue(nombreVoisinesVivantes(position));
 	}
 
@@ -58,8 +58,8 @@ public class Generation {
 		})).size();
 	}
 
-	public Cellule celluleA(Point position) {
-		return cellules.celluleA(position);
+	public Set<Point> positionsVivantes() {
+		return cellules.positionsVivantes();
 	}
 
 	private final Cellules cellules = new Cellules();

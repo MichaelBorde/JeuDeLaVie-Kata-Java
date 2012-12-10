@@ -14,10 +14,6 @@ public class Cellule {
 		this.vivante = vivante;
 	}
 
-	public Cellule cloneToi() {
-		return new Cellule(vivante);
-	}
-
 	public boolean estVivante() {
 		return vivante;
 	}

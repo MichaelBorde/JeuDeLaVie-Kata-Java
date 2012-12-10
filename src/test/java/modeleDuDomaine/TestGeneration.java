@@ -2,6 +2,8 @@ package modeleDuDomaine;
 
 import static org.fest.assertions.Assertions.*;
 
+import java.util.Set;
+
 import org.junit.Test;
 
 import outil.Point;
@@ -12,10 +14,8 @@ public class TestGeneration {
 	public void unCorpsEstInfini() {
 		Generation generation = new Generation(new Point(-12, 20000));
 
-		assertThat(generation.celluleA(new Point(-12, 20000)).estVivante()).isTrue();
-		assertThat(generation.celluleA(new Point(0, 12)).estVivante()).isFalse();
+		assertThat(generation.positionsVivantes()).containsOnly(new Point(-12, 20000));
 	}
-
 
 	@Test
 	public void leCorpsPeutEvoluer() {
@@ -23,15 +23,8 @@ public class TestGeneration {
 
 		Generation suivant = generation.creeSuivante();
 
-		assertThat(suivant.celluleA(new Point(10, 10)).estVivante()).isFalse();
-		assertThat(suivant.celluleA(new Point(10, 11)).estVivante()).isFalse();
-		assertThat(suivant.celluleA(new Point(10, 12)).estVivante()).isFalse();
-		assertThat(suivant.celluleA(new Point(11, 10)).estVivante()).isFalse();
-		assertThat(suivant.celluleA(new Point(11, 11)).estVivante()).isTrue();
-		assertThat(suivant.celluleA(new Point(11, 12)).estVivante()).isFalse();
-		assertThat(suivant.celluleA(new Point(10, 10)).estVivante()).isFalse();
-		assertThat(suivant.celluleA(new Point(10, 11)).estVivante()).isFalse();
-		assertThat(suivant.celluleA(new Point(10, 12)).estVivante()).isFalse();
+		Set<Point> positionsVivantes = suivant.positionsVivantes();
+		assertThat(positionsVivantes).containsOnly(new Point(11, 11));
 	}
 
 	@Test
@@ -40,8 +33,7 @@ public class TestGeneration {
 
 		Generation suivant = generation.creeSuivante();
 
-		assertThat(suivant.celluleA(new Point(1, -1)).estVivante()).isTrue();
-		assertThat(suivant.celluleA(new Point(1, 0)).estVivante()).isTrue();
-		assertThat(suivant.celluleA(new Point(1, 1)).estVivante()).isTrue();
+		Set<Point> positionsVivantes = suivant.positionsVivantes();
+		assertThat(positionsVivantes).containsOnly(new Point(1, -1), new Point(1, 0), new Point(1, 1));
 	}
 }
