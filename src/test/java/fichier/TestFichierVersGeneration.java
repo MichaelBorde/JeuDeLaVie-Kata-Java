@@ -10,7 +10,7 @@ import outil.Point;
 public class TestFichierVersGeneration {
 
 	@Test
-	public void peutLireUnFichierPourCreerUnCorps() {
+	public void peutLireUnFichierPourCreerUnGeneration() {
 		FichierVersGeneration fichierVersGeneration = new FichierVersGeneration("src/test/resources/generation.txt");
 
 		Generation generation = fichierVersGeneration.lisGeneration();
