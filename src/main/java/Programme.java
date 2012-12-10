@@ -4,38 +4,38 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import console.Console;
-import console.CorpsVersConsole;
-import corps.Corps;
-import fichier.FichierVersCorps;
+import console.GenerationVersConsole;
+import fichier.FichierVersGeneration;
+import modeleDuDomaine.Generation;
 
 public class Programme {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		Corps corps = corpsInitial();
-		CorpsVersConsole corpsVersConsole = corpsVersConsole();
+		Generation generation = lisGraine();
+		GenerationVersConsole generationVersConsole = creeGenerationVersConsole();
 		for (int i = 0; i < 30; i++) {
-			afficheGeneration(corps, corpsVersConsole, i);
+			afficheGeneration(generation, generationVersConsole, i);
 			Thread.sleep(1000);
-			corps = corps.suivant();
+			generation = generation.creeSuivante();
 		}
 	}
 
-	private static void afficheGeneration(Corps corps, CorpsVersConsole corpsVersConsole, int i) {
-		console().ecris("Génération : " + i);
-		corpsVersConsole.ecris(corps, 20);
+	private static void afficheGeneration(Generation generation, GenerationVersConsole generationVersConsole, int i) {
+		creeConsole().ecris("Génération : " + i);
+		generationVersConsole.ecris(generation, 20);
 	}
 
-	private static CorpsVersConsole corpsVersConsole() {
-		return injecteur.getInstance(CorpsVersConsole.class);
+	private static GenerationVersConsole creeGenerationVersConsole() {
+		return injecteur.getInstance(GenerationVersConsole.class);
 	}
 
-	private static Console console() {
+	private static Console creeConsole() {
 		return injecteur.getInstance(Console.class);
 	}
 
-	private static Corps corpsInitial() {
-		FichierVersCorps fichierVersCorps = new FichierVersCorps("src/main/resources/feu.txt");
-		return fichierVersCorps.lisCorps();
+	private static Generation lisGraine() {
+		FichierVersGeneration fichierVersGeneration = new FichierVersGeneration("src/main/resources/feu.txt");
+		return fichierVersGeneration.lisGeneration();
 	}
 
 	private static Injector injecteur = Guice.createInjector(new ModuleJeu());

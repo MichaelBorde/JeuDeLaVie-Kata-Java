@@ -1,4 +1,4 @@
-package corps;
+package modeleDuDomaine;
 
 import static org.fest.assertions.Assertions.*;
 

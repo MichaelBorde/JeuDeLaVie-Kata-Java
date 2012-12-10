@@ -1,4 +1,4 @@
-package corps;
+package modeleDuDomaine;
 
 public class Cellule {
 

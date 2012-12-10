@@ -6,8 +6,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import corps.Cellules;
-
 public class TestPoint {
 
 	@Test

@@ -1,4 +1,4 @@
-package corps;
+package modeleDuDomaine;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,31 +11,31 @@ import com.google.common.collect.Sets;
 
 import outil.Point;
 
-public class Corps {
+public class Generation {
 
-	public Corps(Point... points) {
+	public Generation(Point... points) {
 		this(Arrays.asList(points));
 	}
 
-	public Corps(List<Point> points) {
+	public Generation(List<Point> points) {
 		for (Point point : points) {
 			cellules.ajoute(point, new Cellule(true));
 		}
 	}
 
-	public Corps suivant() {
+	public Generation creeSuivante() {
 		List<Point> cellulesSuivantes = Lists.newArrayList();
-		Set<Point> celluleEtVoisines = celluleEtVoisines();
+		Set<Point> celluleEtVoisines = donneCelluleEtVoisines();
 		for (Point position : celluleEtVoisines) {
-			Cellule evolution = celluleEvoluee(position);
+			Cellule evolution = creeCelluleEvoluee(position);
 			if (evolution.estVivante()) {
 				cellulesSuivantes.add(position);
 			}
 		}
-		return new Corps(cellulesSuivantes);
+		return new Generation(cellulesSuivantes);
 	}
 
-	private Set<Point> celluleEtVoisines() {
+	private Set<Point> donneCelluleEtVoisines() {
 		Set<Point> celluleEtVoisines = Sets.newHashSet();
 		for (Point position : cellules.positionsVivantes()) {
 			celluleEtVoisines.addAll(position.pointsAutour());
@@ -44,12 +44,12 @@ public class Corps {
 		return celluleEtVoisines;
 	}
 
-	private Cellule celluleEvoluee(Point position) {
-		Cellule cellule = cellule(position).cloneToi();
-		return cellule.evolue(nombreVoisinesVivantes(position));
+	private Cellule creeCelluleEvoluee(Point position) {
+		Cellule cellule = donneCellule(position).cloneToi();
+		return cellule.evolue(calculeNombreVoisinesVivantes(position));
 	}
 
-	private int nombreVoisinesVivantes(Point position) {
+	private int calculeNombreVoisinesVivantes(Point position) {
 		return Lists.newArrayList(Iterables.filter(cellules.voisines(position), new Predicate<Cellule>() {
 			@Override
 			public boolean apply(Cellule cellule) {
@@ -58,7 +58,7 @@ public class Corps {
 		})).size();
 	}
 
-	public Cellule cellule(Point position) {
+	public Cellule donneCellule(Point position) {
 		return cellules.cellule(position);
 	}
 

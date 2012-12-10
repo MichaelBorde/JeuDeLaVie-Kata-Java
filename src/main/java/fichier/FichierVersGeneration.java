@@ -7,16 +7,16 @@ import java.util.List;
 
 import com.google.common.io.Files;
 
-import corps.Corps;
+import modeleDuDomaine.Generation;
 import outil.Point;
 
-public class FichierVersCorps {
+public class FichierVersGeneration {
 
-	public FichierVersCorps(String chemin) {
+	public FichierVersGeneration(String chemin) {
 		this.chemin = chemin;
 	}
 
-	public Corps lisCorps() {
+	public Generation lisGeneration() {
 		List<Point> points = new ArrayList<Point>();
 		List<String> lignes = lignes();
 		for (int j = 0; j < lignes.size(); j++) {
@@ -27,7 +27,7 @@ public class FichierVersCorps {
 				}
 			}
 		}
-		return new Corps(points);
+		return new Generation(points);
 	}
 
 	private boolean celluleVivante(String ligne, int i) {
