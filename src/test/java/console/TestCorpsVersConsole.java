@@ -12,14 +12,13 @@ public class TestCorpsVersConsole {
 
 	@Before
 	public void avant() {
-		corps = new Corps();
 		console = mock(Console.class);
 		corpsVersConsole = new CorpsVersConsole(console);
 	}
 
 	@Test
 	public void peutEcrireDansLaConsoleUnCorpsSimple() {
-		corps.ajouteCellule(new Point(0, 0), true);
+		Corps corps = new Corps(new Point(0, 0));
 
 		corpsVersConsole.ecris(corps, 10);
 
@@ -28,8 +27,7 @@ public class TestCorpsVersConsole {
 
 	@Test
 	public void peutEcrireDansLaConsoleUnCorpsAvecPlusieursCellulesSurLaMemeHauteur() {
-		corps.ajouteCellule(new Point(0, 0), true);
-		corps.ajouteCellule(new Point(1, 0), true);
+		Corps corps = new Corps(new Point(0, 0), new Point(1, 0));
 
 		corpsVersConsole.ecris(corps, 10);
 
@@ -38,6 +36,7 @@ public class TestCorpsVersConsole {
 
 	@Test
 	public void ilEstPossibleDeSpecifierUneTailleDeGrille() {
+		Corps corps = new Corps();
 		corpsVersConsole = new CorpsVersConsole(console);
 
 		corpsVersConsole.ecris(corps, 3);
@@ -45,7 +44,6 @@ public class TestCorpsVersConsole {
 		verify(console, times(3)).ecris("...");
 	}
 
-	private Corps corps;
 	private Console console;
 	private CorpsVersConsole corpsVersConsole;
 }

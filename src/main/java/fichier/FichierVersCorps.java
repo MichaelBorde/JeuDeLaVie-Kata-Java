@@ -2,6 +2,7 @@ package fichier;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.io.Files;
@@ -16,15 +17,21 @@ public class FichierVersCorps {
 	}
 
 	public Corps lisCorps() {
-		Corps corps = new Corps();
+		List<Point> points = new ArrayList<Point>();
 		List<String> lignes = lignes();
 		for (int j = 0; j < lignes.size(); j++) {
 			String ligne = lignes.get(j);
 			for (int i = 0; i < ligne.length(); i++) {
-				corps.ajouteCellule(new Point(i, j), ligne.charAt(i) == 'x');
+				if (celluleVivante(ligne, i)) {
+					points.add(new Point(i, j));
+				}
 			}
 		}
-		return corps;
+		return new Corps(points);
+	}
+
+	private boolean celluleVivante(String ligne, int i) {
+		return ligne.charAt(i) == 'x';
 	}
 
 	private List<String> lignes() {

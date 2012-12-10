@@ -1,5 +1,7 @@
 package corps;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import com.google.common.base.Predicate;
@@ -11,19 +13,26 @@ import outil.Point;
 
 public class Corps {
 
-	public void ajouteCellule(Point position, boolean vivante) {
-		cellules.ajoute(position, new Cellule(vivante));
+	public Corps(Point... points) {
+		this(Arrays.asList(points));
+	}
+
+	public Corps(List<Point> points) {
+		for (Point point : points) {
+			cellules.ajoute(point, new Cellule(true));
+		}
 	}
 
 	public Corps suivant() {
-		Corps suivant = new Corps();
+		List<Point> cellulesSuivantes = Lists.newArrayList();
 		Set<Point> celluleEtVoisines = celluleEtVoisines();
 		for (Point position : celluleEtVoisines) {
 			Cellule evolution = celluleEvoluee(position);
-			suivant.ajouteCellule(position, evolution.estVivante());
+			if (evolution.estVivante()) {
+				cellulesSuivantes.add(position);
+			}
 		}
-
-		return suivant;
+		return new Corps(cellulesSuivantes);
 	}
 
 	private Set<Point> celluleEtVoisines() {
