@@ -1,7 +1,6 @@
 package modeleDuDomaine;
 
 import static org.fest.assertions.Assertions.*;
-import static org.fest.assertions.Fail.*;
 
 import java.util.Set;
 
@@ -40,6 +39,11 @@ public class TestGeneration {
 
 	@Test
 	public void uneGenerationPeutEtreImmortelle() throws Exception {
-		assertThat(fail("todo"));
+		Generation generation = new Generation(new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1));
+
+		Generation suivant = generation.creeSuivante();
+
+		Set<Point> positionsVivantes = suivant.positionsVivantes();
+		assertThat(positionsVivantes).containsOnly(new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1));
 	}
 }

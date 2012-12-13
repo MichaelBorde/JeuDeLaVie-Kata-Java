@@ -5,12 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+import outil.Fonction;
 import outil.Point;
 
 public class Generation {
@@ -30,13 +29,17 @@ public class Generation {
 	}
 
 	public Generation creeSuivante() {
-		List<Point> cellulesSuivantes = Lists.newArrayList();
+		final List<Point> cellulesSuivantes = Lists.newArrayList();
 		Set<Point> celluleEtVoisines = celluleEtVoisines();
-		for (Point position : celluleEtVoisines) {
-			Cellule evolution = creeCelluleEvoluee(position);
-			if (evolution.estVivante()) {
-				cellulesSuivantes.add(position);
-			}
+		for (final Point position : celluleEtVoisines) {
+			Cellule cellule = celluleA(position);
+			Cellule evolution = cellule.evolue(voisinesAutour(position));
+			evolution.prendsPartALEvolution(new Fonction() {
+				@Override
+				public void appelle() {
+					cellulesSuivantes.add(position);
+				}
+			});
 		}
 		return new Generation(cellulesSuivantes);
 	}
@@ -48,20 +51,6 @@ public class Generation {
 			celluleEtVoisines.add(position);
 		}
 		return celluleEtVoisines;
-	}
-
-	private Cellule creeCelluleEvoluee(Point position) {
-		Cellule cellule = celluleA(position);
-		return cellule.evolue(nombreVoisinesVivantes(position));
-	}
-
-	private int nombreVoisinesVivantes(Point position) {
-		return Lists.newArrayList(Iterables.filter(voisinesAutour(position), new Predicate<Cellule>() {
-			@Override
-			public boolean apply(Cellule cellule) {
-				return cellule.estVivante();
-			}
-		})).size();
 	}
 
 	private Cellule celluleA(Point position) {
