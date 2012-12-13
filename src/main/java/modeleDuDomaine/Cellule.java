@@ -11,42 +11,33 @@ import outil.Fonction;
 public class Cellule {
 
 	public static Cellule creeVivante() {
-		return new Cellule(true);
+		return new Cellule(EtatCellule.VIVANTE);
 	}
 
 	public static Cellule creeMorte() {
-		return new Cellule(false);
+		return new Cellule(EtatCellule.MORTE);
 	}
 
-	Cellule(boolean vivante) {
-		this.vivante = vivante;
+	private Cellule(EtatCellule etat) {
+		this.etat = etat;
 	}
 
 	public Cellule evolue(List<Cellule> cellules) {
-		return new Cellule(capableDeSurvivre(nombreVoisinesVivantes(cellules)));
+		return etat.creeCelluleEvoluee(nombreVoisinesVivantes(cellules));
 	}
 
 	private int nombreVoisinesVivantes(List<Cellule> voisines) {
 		return Lists.newArrayList(Iterables.filter(voisines, new Predicate<Cellule>() {
 			@Override
 			public boolean apply(Cellule cellule) {
-				return cellule.vivante;
+				return cellule.etat == EtatCellule.VIVANTE;
 			}
 		})).size();
 	}
 
-	public void prendsPartALEvolution(Fonction enCasDeSurvie) {
-		if (vivante) {
-			enCasDeSurvie.appelle();
-		}
+	public void prendsPartALEvolution(Fonction siVivante) {
+		etat.prendsPartALEvolution(siVivante);
 	}
 
-	private boolean capableDeSurvivre(int voisinesVivantes) {
-		if (vivante) {
-			return voisinesVivantes >= 2 && voisinesVivantes <= 3;
-		}
-		return voisinesVivantes == 3;
-	}
-
-	private final boolean vivante;
+	private final EtatCellule etat;
 }

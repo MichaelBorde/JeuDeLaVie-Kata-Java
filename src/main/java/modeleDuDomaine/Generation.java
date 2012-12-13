@@ -20,7 +20,7 @@ public class Generation {
 
 	public Generation(List<Point> points) {
 		for (Point point : points) {
-			cellules.put(point, new Cellule(true));
+			cellules.put(point, Cellule.creeVivante());
 		}
 	}
 
