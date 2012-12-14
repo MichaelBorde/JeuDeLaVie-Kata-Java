@@ -18,8 +18,8 @@ public class Cellule {
 		this.etat = etat;
 	}
 
-	public Cellule evolue(List<Cellule> cellules) {
-		return etat.creeCelluleEvoluee(cellules);
+	public Cellule evolue(List<Cellule> voisines) {
+		return etat.creeCelluleEvoluee(voisines);
 	}
 
 	public void prendsPartALEvolution(Fonction siVivante) {
