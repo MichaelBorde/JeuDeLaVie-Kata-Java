@@ -2,8 +2,6 @@ package modeleDuDomaine;
 
 import java.util.List;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 import outil.Fonction;
@@ -27,12 +25,11 @@ public class Cellule {
 	}
 
 	private int nombreVoisinesVivantes(List<Cellule> voisines) {
-		return Lists.newArrayList(Iterables.filter(voisines, new Predicate<Cellule>() {
-			@Override
-			public boolean apply(Cellule cellule) {
-				return cellule.etat == EtatCellule.VIVANTE;
-			}
-		})).size();
+		List<Cellule> vivantes = Lists.newArrayList();
+		for (Cellule voisine : voisines) {
+			vivantes = voisine.etat.ajouteToiAuxVivantes(this, vivantes);
+		}
+		return vivantes.size();
 	}
 
 	public void prendsPartALEvolution(Fonction siVivante) {
