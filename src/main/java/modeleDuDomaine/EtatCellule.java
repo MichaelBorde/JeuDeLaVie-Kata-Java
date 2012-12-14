@@ -9,7 +9,7 @@ import outil.Fonction;
 public enum EtatCellule {
 	VIVANTE {
 		@Override
-		public List<Cellule> ajouteToiAuxVivantes(Cellule cellule, List<Cellule> vivantes) {
+		public List<Cellule> ajouteAuxVivantes(Cellule cellule, List<Cellule> vivantes) {
 			List<Cellule> cellules = Lists.newArrayList(vivantes);
 			cellules.add(cellule);
 			return cellules;
@@ -27,7 +27,7 @@ public enum EtatCellule {
 	},
 	MORTE {
 		@Override
-		public List<Cellule> ajouteToiAuxVivantes(Cellule cellule, List<Cellule> vivantes) {
+		public List<Cellule> ajouteAuxVivantes(Cellule cellule, List<Cellule> vivantes) {
 			return Lists.newArrayList(vivantes);
 		}
 
@@ -52,5 +52,17 @@ public enum EtatCellule {
 
 	protected abstract boolean capableDeSurvivre(int voisinesVivantes);
 
-	public abstract List<Cellule> ajouteToiAuxVivantes(Cellule cellule, List<Cellule> vivantes);
+	public abstract List<Cellule> ajouteAuxVivantes(Cellule cellule, List<Cellule> vivantes);
+
+	public Cellule creeCelluleEvoluee(List<Cellule> voisines) {
+		return creeCelluleEvoluee(nombreVoisinesVivantes(voisines));
+	}
+
+	private int nombreVoisinesVivantes(List<Cellule> voisines) {
+		List<Cellule> vivantes = Lists.newArrayList();
+		for (Cellule voisine : voisines) {
+			vivantes = voisine.ajouteToiAuxVivantes(vivantes);
+		}
+		return vivantes.size();
+	}
 }

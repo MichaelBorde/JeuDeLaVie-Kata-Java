@@ -2,8 +2,6 @@ package modeleDuDomaine;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
 import outil.Fonction;
 
 public class Cellule {
@@ -21,19 +19,15 @@ public class Cellule {
 	}
 
 	public Cellule evolue(List<Cellule> cellules) {
-		return etat.creeCelluleEvoluee(nombreVoisinesVivantes(cellules));
-	}
-
-	private int nombreVoisinesVivantes(List<Cellule> voisines) {
-		List<Cellule> vivantes = Lists.newArrayList();
-		for (Cellule voisine : voisines) {
-			vivantes = voisine.etat.ajouteToiAuxVivantes(this, vivantes);
-		}
-		return vivantes.size();
+		return etat.creeCelluleEvoluee(cellules);
 	}
 
 	public void prendsPartALEvolution(Fonction siVivante) {
 		etat.prendsPartALEvolution(siVivante);
+	}
+
+	public List<Cellule> ajouteToiAuxVivantes(List<Cellule> vivantes) {
+		return etat.ajouteAuxVivantes(this, vivantes);
 	}
 
 	private final EtatCellule etat;
