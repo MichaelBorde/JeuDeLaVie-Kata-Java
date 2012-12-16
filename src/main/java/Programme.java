@@ -11,6 +11,7 @@ import modeleDuDomaine.Generation;
 public class Programme {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
+
 		Generation generation = lisGraine();
 		GenerationVersConsole generationVersConsole = creeGenerationVersConsole();
 		for (int i = 0; i < 30; i++) {
@@ -34,7 +35,7 @@ public class Programme {
 	}
 
 	private static Generation lisGraine() {
-		FichierVersGeneration fichierVersGeneration = new FichierVersGeneration("src/main/resources/feu.txt");
+		FichierVersGeneration fichierVersGeneration = new FichierVersGeneration("src/main/resources/planeur.txt");
 		return fichierVersGeneration.lisGeneration();
 	}
 
