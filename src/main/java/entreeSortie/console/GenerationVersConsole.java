@@ -32,7 +32,10 @@ public class GenerationVersConsole {
 	}
 
 	private String representationCellule(Set<Point> vivantes, Point position) {
-		return vivantes.contains(position) ? VIVANTE : MORTE;
+		if (vivantes.contains(position)) {
+			return VIVANTE;
+		}
+		return MORTE;
 	}
 
 	private final Console console;
