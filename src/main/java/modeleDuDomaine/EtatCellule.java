@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
-import outil.Fonction;
-
 public enum EtatCellule {
 	VIVANTE {
 		@Override
@@ -13,11 +11,6 @@ public enum EtatCellule {
 			List<Cellule> cellules = Lists.newArrayList(vivantes);
 			cellules.add(cellule);
 			return cellules;
-		}
-
-		@Override
-		public void prendsPartALEvolution(Fonction siVivante) {
-			siVivante.appelle();
 		}
 
 		@Override
@@ -32,16 +25,10 @@ public enum EtatCellule {
 		}
 
 		@Override
-		public void prendsPartALEvolution(Fonction siVivante) {
-		}
-
-		@Override
 		protected boolean capableDeSurvivre(int voisinesVivantes) {
 			return voisinesVivantes == 3;
 		}
 	};
-
-	public abstract void prendsPartALEvolution(Fonction siVivante);
 
 	public Cellule creeCelluleEvoluee(int nombreVoisinesVivantes) {
 		if (capableDeSurvivre(nombreVoisinesVivantes)) {

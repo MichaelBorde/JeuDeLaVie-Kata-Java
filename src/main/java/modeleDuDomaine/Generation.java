@@ -1,15 +1,16 @@
 package modeleDuDomaine;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
-import outil.Fonction;
 import outil.Point;
 
 public class Generation {
@@ -19,9 +20,15 @@ public class Generation {
 	}
 
 	public Generation(List<Point> points) {
+		cellules = creeCellulesPositionnees(points);
+	}
+
+	private Map<Point, Cellule> creeCellulesPositionnees(List<Point> points) {
+		Map<Point, Cellule> resultat = Maps.newHashMap();
 		for (Point point : points) {
-			cellules.put(point, Cellule.creeVivante());
+			resultat.put(point, Cellule.creeVivante());
 		}
+		return resultat;
 	}
 
 	public Set<Point> positionsVivantes() {
@@ -29,19 +36,27 @@ public class Generation {
 	}
 
 	public Generation creeSuivante() {
-		final List<Point> cellulesSuivantes = Lists.newArrayList();
-		Set<Point> celluleEtVoisines = celluleEtVoisines();
-		for (final Point position : celluleEtVoisines) {
-			Cellule cellule = celluleA(position);
-			Cellule evolution = cellule.evolue(voisinesAutour(position));
-			evolution.prendsPartALEvolution(new Fonction() {
-				@Override
-				public void appelle() {
-					cellulesSuivantes.add(position);
-				}
-			});
+		return new Generation(positionsVivantesSuivantes());
+	}
+
+	private List<Point> positionsVivantesSuivantes() {
+		List<Point> positionsVivantesSuivantes = Lists.newArrayList();
+		for (final Point position : celluleEtVoisines()) {
+			positionsVivantesSuivantes.addAll(positionsVivantesSuivantesDepuis(position));
 		}
-		return new Generation(cellulesSuivantes);
+		return positionsVivantesSuivantes;
+	}
+
+	private List<Point> positionsVivantesSuivantesDepuis(final Point position) {
+		Cellule cellule = celluleA(position);
+		Cellule evolution = cellule.evolue(voisinesAutour(position));
+		List<Cellule> cellulesAjoutees = evolution.ajouteToiAuxVivantes(new ArrayList<Cellule>());
+		return Lists.transform(cellulesAjoutees, new Function<Cellule, Point>() {
+			@Override
+			public Point apply(Cellule cellule) {
+				return position;
+			}
+		});
 	}
 
 	private Set<Point> celluleEtVoisines() {
@@ -68,5 +83,5 @@ public class Generation {
 		return resultat;
 	}
 
-	private final Map<Point, Cellule> cellules = Maps.newHashMap();
+	private final Map<Point, Cellule> cellules;
 }

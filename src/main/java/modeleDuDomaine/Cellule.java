@@ -2,8 +2,6 @@ package modeleDuDomaine;
 
 import java.util.List;
 
-import outil.Fonction;
-
 public class Cellule {
 
 	public static Cellule creeVivante() {
@@ -20,10 +18,6 @@ public class Cellule {
 
 	public Cellule evolue(List<Cellule> voisines) {
 		return etat.creeCelluleEvoluee(voisines);
-	}
-
-	public void prendsPartALEvolution(Fonction siVivante) {
-		etat.prendsPartALEvolution(siVivante);
 	}
 
 	public List<Cellule> ajouteToiAuxVivantes(List<Cellule> vivantes) {
