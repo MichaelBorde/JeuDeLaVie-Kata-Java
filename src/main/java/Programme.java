@@ -38,5 +38,5 @@ public class Programme {
 		return fichierVersGeneration.lisGeneration();
 	}
 
-	private static Injector injecteur = Guice.createInjector(new ModuleJeu());
+	private static final Injector injecteur = Guice.createInjector(new ModuleJeu());
 }

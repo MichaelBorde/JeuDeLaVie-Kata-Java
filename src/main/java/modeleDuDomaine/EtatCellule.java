@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 public enum EtatCellule {
+
 	VIVANTE {
 		@Override
 		public List<Cellule> ajouteAuxVivantes(Cellule cellule, List<Cellule> vivantes) {
@@ -30,13 +31,6 @@ public enum EtatCellule {
 		}
 	};
 
-	public Cellule creeCelluleEvoluee(int nombreVoisinesVivantes) {
-		if (capableDeSurvivre(nombreVoisinesVivantes)) {
-			return Cellule.creeVivante();
-		}
-		return Cellule.creeMorte();
-	}
-
 	protected abstract boolean capableDeSurvivre(int voisinesVivantes);
 
 	public abstract List<Cellule> ajouteAuxVivantes(Cellule cellule, List<Cellule> vivantes);
@@ -51,5 +45,12 @@ public enum EtatCellule {
 			vivantes = voisine.ajouteToiAuxVivantes(vivantes);
 		}
 		return vivantes.size();
+	}
+
+	private Cellule creeCelluleEvoluee(int nombreVoisinesVivantes) {
+		if (capableDeSurvivre(nombreVoisinesVivantes)) {
+			return Cellule.creeVivante();
+		}
+		return Cellule.creeMorte();
 	}
 }

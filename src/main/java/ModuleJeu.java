@@ -4,7 +4,7 @@ import com.google.inject.Module;
 import entreeSortie.console.Console;
 import entreeSortie.console.ConsoleJava;
 
-public class ModuleJeu implements Module {
+class ModuleJeu implements Module {
 
 	@Override
 	public void configure(Binder binder) {
