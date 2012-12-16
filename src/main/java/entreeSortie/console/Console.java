@@ -1,4 +1,4 @@
-package console;
+package entreeSortie.console;
 
 public interface Console {
 

@@ -13,12 +13,17 @@ public class Point {
 
 	public List<Point> pointsAutour() {
 		List<Point> resultat = Lists.newArrayList();
-		for (int iCourant = -1; iCourant < 2; iCourant++) {
-			for (int jCourant = -1; jCourant < 2; jCourant++) {
-				if (iCourant != 0 || jCourant != 0) {
-					resultat.add(new Point(x + iCourant, y + jCourant));
-				}
-			}
+		for (int decalageX = -1; decalageX < 2; decalageX++) {
+			resultat.addAll(pointsVerticaux(decalageX));
+		}
+		resultat.remove(this);
+		return resultat;
+	}
+
+	private List<Point> pointsVerticaux(int decalageX) {
+		List<Point> resultat = Lists.newArrayList();
+		for (int yCourant = -1; yCourant < 2; yCourant++) {
+			resultat.add(new Point(x + decalageX, y + yCourant));
 		}
 		return resultat;
 	}

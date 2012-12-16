@@ -3,9 +3,9 @@ import java.io.IOException;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import console.Console;
-import console.GenerationVersConsole;
-import fichier.FichierVersGeneration;
+import entreeSortie.console.Console;
+import entreeSortie.console.GenerationVersConsole;
+import entreeSortie.fichier.FichierVersGeneration;
 import modeleDuDomaine.Generation;
 
 public class Programme {

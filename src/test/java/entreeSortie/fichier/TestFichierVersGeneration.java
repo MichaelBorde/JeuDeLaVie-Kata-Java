@@ -1,4 +1,4 @@
-package fichier;
+package entreeSortie.fichier;
 
 import static org.fest.assertions.Assertions.*;
 

@@ -1,8 +1,8 @@
 import com.google.inject.Binder;
 import com.google.inject.Module;
 
-import console.Console;
-import console.ConsoleJava;
+import entreeSortie.console.Console;
+import entreeSortie.console.ConsoleJava;
 
 public class ModuleJeu implements Module {
 

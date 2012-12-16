@@ -1,4 +1,4 @@
-package console;
+package entreeSortie.console;
 
 public class ConsoleJava implements Console {
 

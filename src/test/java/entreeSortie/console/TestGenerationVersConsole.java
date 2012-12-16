@@ -1,4 +1,4 @@
-package console;
+package entreeSortie.console;
 
 import static org.mockito.Mockito.*;
 
